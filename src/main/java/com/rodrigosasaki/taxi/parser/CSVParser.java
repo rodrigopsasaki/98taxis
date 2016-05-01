@@ -1,7 +1,6 @@
 package com.rodrigosasaki.taxi.parser;
 
-import com.rodrigosasaki.taxi.model.Grid;
-import com.rodrigosasaki.taxi.model.Position;
+import com.rodrigosasaki.taxi.model.GridPosition;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -20,9 +19,9 @@ public final class CSVParser {
         // utility class
     }
 
-    public static Grid defaultGrid(){
+    public static List<GridPosition> defaultGridPositions(){
         try {
-            Path csvPath = Paths.get(ClassLoader.getSystemResource("defaultGrid.csv").toURI());
+            Path csvPath = Paths.get(CSVParser.class.getClassLoader().getResource("defaultGrid.csv").toURI());
             return parseCSV(new String(Files.readAllBytes(csvPath)));
         } catch (IOException | URISyntaxException e) {
             LOGGER.error("There was an error reading the default grid csv file", e);
@@ -30,8 +29,8 @@ public final class CSVParser {
         return null;
     }
 
-    public static Grid parseCSV(String csv) {
-        List<Position> positions = new ArrayList<>();
+    public static List<GridPosition> parseCSV(String csv) {
+        List<GridPosition> gridPositions = new ArrayList<>();
         String[] lines = csv.split("\n");
 
         for(int i = 0 ; i < lines.length ; i++){
@@ -39,11 +38,11 @@ public final class CSVParser {
             String[] nodes = line.split(",", -1);
             for (int j = 0; j < nodes.length; j++) {
                 String value = nodes[j];
-                positions.add(new Position(i, j, isWalkable(value)));
+                gridPositions.add(new GridPosition(i, j, isWalkable(value)));
             }
         }
 
-        return new Grid(positions);
+        return gridPositions;
     }
 
     private static boolean isWalkable(String value) {

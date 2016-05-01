@@ -1,6 +1,6 @@
 package rodrigosasaki.taxi.parser;
 
-import com.rodrigosasaki.taxi.model.Grid;
+import com.rodrigosasaki.taxi.service.Grid;
 import com.rodrigosasaki.taxi.parser.CSVParser;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class CSVParserTest {
     public void testTwoByTwoGridWithoutBlocks(){
         String value = ",\n,";
 
-        Grid grid = CSVParser.parseCSV(value);
+        Grid grid = new Grid(CSVParser.parseCSV(value));
 
         assertTrue(grid.getPosition(0, 0).isWalkable());
         assertTrue(grid.getPosition(0, 1).isWalkable());
@@ -25,7 +25,7 @@ public class CSVParserTest {
     public void testTwoByTwoGridWithBlocks(){
         String value = ",\n,x";
 
-        Grid grid = CSVParser.parseCSV(value);
+        Grid grid = new Grid(CSVParser.parseCSV(value));
 
         assertTrue(grid.getPosition(0, 0).isWalkable());
         assertTrue(grid.getPosition(0, 1).isWalkable());
