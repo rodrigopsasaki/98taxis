@@ -26,7 +26,8 @@
 O sistema possui uma API que contem 5 endpoints, e aqui eu vou listar exemplos de como utilizar cada um:
 
 #### Criação de Taxistas
-O Endpoint para criação de taxistas recebe uma coordenada (x, y) e criará no grid um taxista disponível para buscar passageiros
+O Endpoint para criação de taxistas recebe uma coordenada (x, y) e criará um taxista disponível para buscar passageiros.
+O taxista será criado na posição especificada pela coordenada.
 
 ##### Exemplo de uso:
 ```
@@ -46,6 +47,8 @@ O Endpoint para criação de passageiros recebe duas coordenadas (x, y).
 - A primeira coordenada é a posição original do passageiro (SourceX e SourceY).
 - A segunda coordenada é o destino do passageiro (DestinationX e DestinationY).
 
+O passageiro será criado na posição especificada pelas coordenadas SourceX e SourceY
+
 ##### Exemplo de uso:
 ```
 POST /api/passenger HTTP/1.1
@@ -60,6 +63,8 @@ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'SourceX=14
 ```
 
 #### Avançar tempo
+Este endpoint irá avançar o tempo da simulação em 1 unidade.
+
 O Endpoint para avanço de tempo não espera nenhum valor.
 
 ##### Exemplo de uso:
@@ -73,7 +78,9 @@ curl -X POST "http://ec2-52-91-89-230.compute-1.amazonaws.com:8080/api/step"
 ```
 
 #### Exibir estado atual
-O Endpoint para avanço de tempo não espera nenhum valor.
+Este endpoint responde com o estado atual da simulação em formato HTML.
+
+O Endpoint para exibir estado atual não espera nenhum valor.
 
 ##### Exemplo de uso:
 ```
@@ -86,7 +93,9 @@ curl -X GET "http://ec2-52-91-89-230.compute-1.amazonaws.com:8080/api/state"
 ```
 
 #### Reiniciar simulação
-O Endpoint para avanço de tempo não espera nenhum valor.
+Este endpoint irá remover completamente todos os taxistas e passageiros do grid.
+
+O Endpoint para reiniciar simulação não espera nenhum valor.
 
 ##### Exemplo de uso:
 ```
