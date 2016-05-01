@@ -1,6 +1,6 @@
 # 98Taxis
 
-98Taxis é um sistema baseado em agentes criado para simular um ambiente onde convivem taxis e passageiros. Esse ambiente segue as seguintes regras.
+98Taxis é um sistema baseado em agentes criado para simular um ambiente onde convivem taxis e passageiros. Esse ambiente segue as seguintes regras:
 
   - O ambiente da simulação é um grid simétrico, uma matriz.
   - Nessa matriz existem bloqueios, ou seja, ruas onde não podem passar nem taxis nem passageiros
