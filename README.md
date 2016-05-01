@@ -93,6 +93,9 @@ curl -X POST "http://ec2-52-91-89-230.compute-1.amazonaws.com:8080/api/restart"
 ---------------------
 
 ### Exemplo de resposta das APIs
+
+Todas as 5 APIs respondem com o estado atual do sistema em formato HTML.
+
 ```
 _x____________________________
 _x____3_________xxxxxxx______x
