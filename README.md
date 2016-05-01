@@ -42,7 +42,7 @@ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'X=5&Y=5' "
 ```
 
 #### Criação de Passageiros
-O Endpoint para criação de taxistas recebe duas coordenadas (x, y).
+O Endpoint para criação de passageiros recebe duas coordenadas (x, y).
 - A primeira coordenada é a posição original do passageiro (SourceX e SourceY).
 - A segunda coordenada é o destino do passageiro (DestinationX e DestinationY).
 
