@@ -2,7 +2,7 @@ package com.rodrigosasaki.taxi.pathfinding;
 
 import com.overload.loc.Locatable;
 import com.overload.loc.Node;
-import com.rodrigosasaki.taxi.model.Grid;
+import com.rodrigosasaki.taxi.service.Grid;
 import com.rodrigosasaki.taxi.parser.CSVParser;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class ShortestPathFinderTest {
 
     @Test
     public void findPathInSingleLineWithoutBlocks(){
-        Grid grid = CSVParser.parseCSV(",,");
+        Grid grid = new Grid(CSVParser.parseCSV(",,"));
         ShortestPathFinder pathfinder = new ShortestPathFinder(grid);
 
         List<Locatable> path = pathfinder.shortestPath(node(0, 0), node(0, 2));
@@ -33,7 +33,7 @@ public class ShortestPathFinderTest {
 
     @Test
     public void findPathInThreeByThreeWithoutBlocks(){
-        Grid grid = CSVParser.parseCSV(",,\n,,\n,,");
+        Grid grid = new Grid(CSVParser.parseCSV(",,\n,,\n,,"));
         ShortestPathFinder pathfinder = new ShortestPathFinder(grid);
 
         List<Locatable> path = pathfinder.shortestPath(node(0, 0), node(2, 2));
@@ -58,7 +58,7 @@ public class ShortestPathFinderTest {
 
     @Test
     public void findPathInThreeByThreeWithBlocks(){
-        Grid grid = CSVParser.parseCSV(",,x\n,x,x\n,,");
+        Grid grid = new Grid(CSVParser.parseCSV(",,x\n,x,x\n,,"));
         ShortestPathFinder pathfinder = new ShortestPathFinder(grid);
 
         List<Locatable> path = pathfinder.shortestPath(node(0, 0), node(2, 2));
@@ -83,7 +83,7 @@ public class ShortestPathFinderTest {
 
     @Test
     public void findPathWithUnwalkableTarget(){
-        Grid grid = CSVParser.parseCSV(",,\n,,\n,,x");
+        Grid grid = new Grid(CSVParser.parseCSV(",,\n,,\n,,x"));
         ShortestPathFinder pathfinder = new ShortestPathFinder(grid);
 
         List<Locatable> path = pathfinder.shortestPath(node(0, 0), node(2, 2));
@@ -93,7 +93,7 @@ public class ShortestPathFinderTest {
 
     @Test
     public void findPathWithUnpassableObstacle(){
-        Grid grid = CSVParser.parseCSV(",,x\n,x,\nx,,");
+        Grid grid = new Grid(CSVParser.parseCSV(",,x\n,x,\nx,,"));
         ShortestPathFinder pathfinder = new ShortestPathFinder(grid);
 
         List<Locatable> path = pathfinder.shortestPath(node(0, 0), node(2, 2));
