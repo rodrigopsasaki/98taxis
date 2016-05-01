@@ -27,6 +27,7 @@ O sistema possui uma API que contem 5 endpoints, e aqui eu vou listar exemplos d
 
 #### Criação de Taxistas
 O Endpoint para criação de taxistas recebe uma coordenada (x, y) e criará um taxista disponível para buscar passageiros.
+
 O taxista será criado na posição especificada pela coordenada.
 
 ##### Exemplo de uso:
