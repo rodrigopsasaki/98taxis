@@ -13,6 +13,14 @@
 
 -------------
 
+## Sistema
+
+- O sistema foi desenvolvido na plataforma Java, utilizando Spring para injeção de dependências e RESTEasy para o desenvolvimento da API.
+- Não existe nenhum tipo de persistência, todo o processamento ocorre em memória
+- O Algoritmo de caminho mais curto utilizado foi o A* (A-Star), ignorando movimentos diagonais.
+
+------------
+
 ## API
 
 O sistema possui uma API que contem 5 endpoints, e aqui eu vou listar exemplos de como utilizar cada um:
@@ -137,7 +145,8 @@ x_____________________________
 - 3 = táxi cheio
 - P = passageiro
 
-------------
+---------------
+
 #### Considerações
 
 As APIs de criação de taxistas e passageiros entendem como inválidas as seguintes coordenadas:
