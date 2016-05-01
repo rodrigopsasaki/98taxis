@@ -3,6 +3,7 @@ package com.rodrigosasaki.taxi.model;
 import com.overload.algorithms.pathfinding.Pathfinder;
 import com.overload.loc.Locatable;
 import com.overload.loc.Node;
+import com.rodrigosasaki.taxi.service.Grid;
 
 public class GridFlags implements Pathfinder.Flags {
 
@@ -14,8 +15,8 @@ public class GridFlags implements Pathfinder.Flags {
 
     @Override
     public boolean blocked(Locatable loc, Locatable parent) {
-        Position position = grid.getPosition(loc);
-        return position == null || !grid.getPosition(loc).isWalkable();
+        GridPosition gridPosition = grid.getPosition(loc);
+        return gridPosition == null || !grid.getPosition(loc).isWalkable();
     }
 
     public boolean blocked(int x, int y){

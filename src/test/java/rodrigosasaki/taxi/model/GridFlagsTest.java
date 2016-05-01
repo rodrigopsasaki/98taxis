@@ -1,6 +1,6 @@
 package rodrigosasaki.taxi.model;
 
-import com.rodrigosasaki.taxi.model.Grid;
+import com.rodrigosasaki.taxi.service.Grid;
 import com.rodrigosasaki.taxi.model.GridFlags;
 import com.rodrigosasaki.taxi.parser.CSVParser;
 import org.junit.Test;
@@ -12,7 +12,7 @@ public class GridFlagsTest {
 
     @Test
     public void testIdentifiesBlocksCorrectly(){
-        Grid grid = CSVParser.parseCSV("x,\n,x");
+        Grid grid = new Grid(CSVParser.parseCSV("x,\n,x"));
         GridFlags flags = new GridFlags(grid);
 
         assertTrue(flags.blocked(0, 0));
