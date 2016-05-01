@@ -143,6 +143,7 @@ x_____________________________
 As APIs de criação de taxistas e passageiros entendem como inválidas as seguintes coordenadas:
  - Uma coordenada que representa uma rua bloqueada
  - Uma coordenada fora do escopo do grid (números negativos ou maiores do que o limite)
+ - Se o caminho do passageiro (de sua origem até seu destino) for impossível (tiver obstáculos intranspassáveis), o sistema responde com uma mensagem de erro e não permite a criação do passageiro
 
 Nos dois casos acima o sistema responde com uma mensagem de erro, e não permite a criação do passageiro/taxista
 
