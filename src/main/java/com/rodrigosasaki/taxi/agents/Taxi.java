@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Taxi implements Agent{
 
+    private String id;
     private Locatable location;
     private TaxiState state;
     private Passenger passenger;
@@ -15,6 +16,7 @@ public class Taxi implements Agent{
     private Stage stage;
 
     public Taxi(Locatable location, Stage stage){
+        this.id = UUID.randomUUID().toString();
         this.location = location;
         this.state = TaxiState.FREE;
         this.path = new LinkedList<>();
@@ -44,6 +46,24 @@ public class Taxi implements Agent{
             moveToRandomNeighbor();
         }
     }
+    private void performEnRouteStep() {
+        if(location.equals(passenger.getLocation())){
+            drivePassenger(passenger);
+            stage.removePassenger(passenger);
+        }
+    }
+
+    private void performOccupiedStep() {
+        if(location.equals(passenger.getDestination())){
+            dropoffPassenger();
+        }
+    }
+
+    private void dropoffPassenger() {
+        this.passenger = null;
+        this.path.clear();
+        this.state = TaxiState.FREE;
+    }
 
     private void moveToRandomNeighbor() {
         List<Locatable> positions = getShuffledNeighbors(location);
@@ -70,24 +90,8 @@ public class Taxi implements Agent{
         return neighbours;
     }
 
-
-    private void performEnRouteStep() {
-        if(location.equals(passenger.getLocation())){
-            drivePassenger(passenger);
-            stage.removePassenger(passenger);
-        }
-    }
-
-    private void performOccupiedStep() {
-        if(location.equals(passenger.getDestination())){
-            dropoffPassenger();
-        }
-    }
-
-    private void dropoffPassenger() {
-        this.passenger = null;
-        this.path.clear();
-        this.state = TaxiState.FREE;
+    public TaxiState getTaxiState(){
+        return state;
     }
 
     @Override
@@ -114,4 +118,27 @@ public class Taxi implements Agent{
         return location;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Taxi)) return false;
+
+        Taxi taxi = (Taxi) o;
+
+        return id != null ? id.equals(taxi.id) : taxi.id == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

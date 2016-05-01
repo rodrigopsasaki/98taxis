@@ -1,18 +1,33 @@
 package com.rodrigosasaki.taxi.writer;
 
-import com.rodrigosasaki.taxi.model.Grid;
-import com.rodrigosasaki.taxi.model.Position;
+import com.rodrigosasaki.taxi.model.GridPosition;
+import com.rodrigosasaki.taxi.service.Grid;
 import com.rodrigosasaki.taxi.stage.Stage;
 
 import java.util.List;
 
-public class StageWriter {
+public final class StageWriter {
 
-    public String write(Stage stage) {
-        char[][] matrix = transposeGrid(stage.getGrid());
-        stage.getPassengers().forEach(p -> matrix[p.getLocation().getX()][p.getLocation().getY()] = p.getState());
-        stage.getTaxis().forEach(t -> matrix[t.getLocation().getX()][t.getLocation().getY()] = t.getState());
+    private StageWriter(){
+        // utility class
+    }
 
+    public static String toHtml(Stage stage){
+        char[][] matrix = transposeStage(stage);
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0 ; i < matrix.length ; i++){
+            for(int j = 0 ; j < matrix[i].length ; j++){
+                sb.append(matrix[i][j]);
+            }
+            sb.append("<br/>");
+        }
+
+        return sb.toString();
+    }
+
+    public static String toString(Stage stage) {
+        char[][] matrix = transposeStage(stage);
         StringBuilder sb = new StringBuilder();
 
         for(int i = 0 ; i < matrix.length ; i++){
@@ -25,14 +40,18 @@ public class StageWriter {
         return sb.toString();
     }
 
-    private char[][] transposeGrid(Grid grid) {
-        List<Position> positionsList = grid.getPositionsList();
-        Position highestPosition = grid.getHighestPosition();
-        char[][] matrix = new char[highestPosition.getX() + 1][highestPosition.getY() + 1];
+    private static char[][] transposeStage(Stage stage) {
+        Grid grid = stage.getGrid();
+        List<GridPosition> positionsList = grid.getPositionsList();
+        GridPosition highestGridPosition = grid.getHighestPosition();
+        char[][] matrix = new char[highestGridPosition.getX() + 1][highestGridPosition.getY() + 1];
 
-        for(Position position : positionsList){
-            matrix[position.getX()][position.getY()] = position.isWalkable() ? '_' : 'x';
+        for(GridPosition gridPosition : positionsList){
+            matrix[gridPosition.getX()][gridPosition.getY()] = gridPosition.isWalkable() ? '_' : 'x';
         }
+
+        stage.getPassengers().forEach(p -> matrix[p.getLocation().getX()][p.getLocation().getY()] = p.getState());
+        stage.getTaxis().forEach(t -> matrix[t.getLocation().getX()][t.getLocation().getY()] = t.getState());
 
         return matrix;
     }

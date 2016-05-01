@@ -12,7 +12,7 @@ public enum TaxiState {
         this.value = value;
     }
 
-    char getValue(){
+    public char getValue(){
         return value;
     }
 
