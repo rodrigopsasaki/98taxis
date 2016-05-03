@@ -1,7 +1,6 @@
-package rodrigosasaki.taxi.model;
+package com.rodrigosasaki.taxi.model;
 
 import com.rodrigosasaki.taxi.service.Grid;
-import com.rodrigosasaki.taxi.model.GridFlags;
 import com.rodrigosasaki.taxi.parser.CSVParser;
 import org.junit.Test;
 

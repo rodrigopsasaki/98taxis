@@ -1,7 +1,9 @@
-package com.rodrigosasaki.taxi.agents;
+package com.rodrigosasaki.taxi.stage;
 
 import com.overload.loc.Node;
-import com.rodrigosasaki.taxi.stage.Stage;
+import com.rodrigosasaki.taxi.agents.Passenger;
+import com.rodrigosasaki.taxi.agents.Taxi;
+import com.rodrigosasaki.taxi.agents.TaxiState;
 import com.rodrigosasaki.taxi.utils.PathUtils;
 import org.junit.Before;
 import org.junit.Test;

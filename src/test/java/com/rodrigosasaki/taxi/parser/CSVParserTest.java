@@ -1,7 +1,6 @@
-package rodrigosasaki.taxi.parser;
+package com.rodrigosasaki.taxi.parser;
 
 import com.rodrigosasaki.taxi.service.Grid;
-import com.rodrigosasaki.taxi.parser.CSVParser;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
