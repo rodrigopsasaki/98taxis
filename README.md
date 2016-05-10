@@ -33,14 +33,14 @@ O taxista será criado na posição especificada pela coordenada.
 ##### Exemplo de uso:
 ```
 POST /api/taxi HTTP/1.1
-Host: ec2-52-91-89-230.compute-1.amazonaws.com:8080
+Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
 X=5&Y=5
 ```
 ##### CURL
 ```sh
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'X=5&Y=5' "http://ec2-52-91-89-230.compute-1.amazonaws.com:8080/api/taxi"
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'X=5&Y=5' "http://localhost:8080/api/taxi"
 ```
 
 #### Criação de Passageiros
@@ -53,14 +53,14 @@ O passageiro será criado na posição especificada pelas coordenadas SourceX e 
 ##### Exemplo de uso:
 ```
 POST /api/passenger HTTP/1.1
-Host: ec2-52-91-89-230.compute-1.amazonaws.com:8080
+Host: localhost:8080
 Content-Type: application/x-www-form-urlencoded
 
 SourceX=14&SourceY=18&DestinationX=5&DestinationY=5
 ```
 ##### CURL
 ```sh
-curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'SourceX=14&SourceY=18&DestinationX=5&DestinationY=5' "http://ec2-52-91-89-230.compute-1.amazonaws.com:8080/api/passenger"
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'SourceX=14&SourceY=18&DestinationX=5&DestinationY=5' "http://localhost:8080/api/passenger"
 ```
 
 #### Avançar tempo
@@ -71,11 +71,11 @@ O Endpoint para avanço de tempo não espera nenhum valor.
 ##### Exemplo de uso:
 ```
 POST /api/step HTTP/1.1
-Host: ec2-52-91-89-230.compute-1.amazonaws.com:8080
+Host: localhost:8080
 ```
 ##### CURL
 ```sh
-curl -X POST "http://ec2-52-91-89-230.compute-1.amazonaws.com:8080/api/step"
+curl -X POST "http://localhost:8080/api/step"
 ```
 
 #### Exibir estado atual
@@ -86,11 +86,11 @@ O Endpoint para exibir estado atual não espera nenhum valor.
 ##### Exemplo de uso:
 ```
 GET /api/state HTTP/1.1
-Host: ec2-52-91-89-230.compute-1.amazonaws.com:8080
+Host: localhost:8080
 ```
 ##### CURL
 ```sh
-curl -X GET "http://ec2-52-91-89-230.compute-1.amazonaws.com:8080/api/state"
+curl -X GET "http://localhost:8080/api/state"
 ```
 
 #### Reiniciar simulação
@@ -101,11 +101,11 @@ O Endpoint para reiniciar simulação não espera nenhum valor.
 ##### Exemplo de uso:
 ```
 POST /api/restart HTTP/1.1
-Host: ec2-52-91-89-230.compute-1.amazonaws.com:8080
+Host: localhost:8080
 ```
 ##### CURL
 ```sh
-curl -X POST "http://ec2-52-91-89-230.compute-1.amazonaws.com:8080/api/restart"
+curl -X POST "http://localhost:8080/api/restart"
 ```
 
 ---------------------
@@ -162,7 +162,7 @@ x_____________________________
 As APIs de criação de taxistas e passageiros entendem como inválidas as seguintes coordenadas:
  - Uma coordenada que representa uma rua bloqueada
  - Uma coordenada fora do escopo do grid (números negativos ou maiores do que o limite)
- - Se o caminho do passageiro (de sua origem até seu destino) for impossível (tiver obstáculos intranspassáveis), o sistema responde com uma mensagem de erro e não permite a criação do passageiro
+ - Se o caminho do passageiro (de sua origem até seu destino) for impossível (tiver obstáculos intranspassáveis)
 
-Nos dois casos acima o sistema responde com uma mensagem de erro, e não permite a criação do passageiro/taxista
+Nos três casos acima o sistema responde com uma mensagem de erro, e não permite a criação do passageiro/taxista
 
